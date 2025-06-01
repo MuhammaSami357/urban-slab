@@ -17,13 +17,19 @@ import ScrollToTopButton from './components/ScrollToTopButton';
 import MobileSlider from './components/MobileSlider';
 import ProductDetail from './components/ProductDetail'
 import MobileProductDetail from './components/MobileProductDetail';
+import ForgotPassword from './components/ForgotPassword';
+import ResetPassword from './components/ResetPassword';
+import MobileForgotPassword from './components/MobileForgotPassword';
 function App() {
   const [showSignUp, setShowSignUp] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [showBar, setShowBar] = useState(false);
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
 
   // Toggle functions
+
+
   const toggleSignUp = () => {
     setShowSignUp(true);
     setShowLogin(false);
@@ -42,11 +48,25 @@ function App() {
     setShowBar((prev) => !prev);
   };
 
+  const toggleForgot = () => {
+    setShowForgotPassword(true)
+    setShowLogin(false);
+    setShowSignUp(false);
+
+  }
+
   // Close functions
   const closeSignUp = () => setShowSignUp(false);
+
+
   const closeLogin = () => setShowLogin(false);
+
   const closeSearch = () => setShowSearch(false);
+
   const closeBar = () => setShowBar(false);
+
+  const closeForgotPassword = () => setShowForgotPassword(false);
+
 
   return (
     <BrowserRouter>
@@ -60,22 +80,45 @@ function App() {
 
         {/* Routes for pages */}
         <Routes>
-  <Route path="/" element={<><Home /><MobileSlider /></>} />
-  <Route path="/newarrival" element={<NewArrivals />} />
-  <Route path="/about" element={<About />} />
-  <Route path="/contact" element={<Contact />} />
-  <Route path='/mobilesignup' element={<MobileSignup />} />
-  <Route path="/product/:id" element={<ProductDetail/>} />
-  <Route path="/MobileProduct/:id" element={<MobileProductDetail/>} />
-  <Route path='/mobilelogin' element={<MobileLogin />} />
-</Routes>
+          <Route path="/" element={<><Home /><MobileSlider /></>} />
+
+          <Route path="/newarrival" element={<NewArrivals />} />
+
+          <Route path="/about" element={<About />} />
+
+          <Route path="/contact" element={<Contact />} />
+
+          <Route path='/mobilesignup' element={<MobileSignup />} />
+
+          <Route path="/product/:id" element={<ProductDetail />} />
+
+          <Route path="/MobileProduct/:id" element={<MobileProductDetail />} />
+
+          <Route path='/mobilelogin' element={<MobileLogin />} />
+
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
+
+          <Route path='/mob-forgot-password' element={<MobileForgotPassword />} />
+        </Routes>
 
 
         {/* Conditional rendering of modals */}
         {showSignUp && <SignUp show={showSignUp} onClose={closeSignUp} onLoginClick={toggleLogin} />}
-        {showLogin && <Login show={showLogin} onClose={closeLogin} onSignUpClick={toggleSignUp} />}
-        {showSearch && <SearchBar show={showSearch} onClose={closeSearch} />}
+
+
+        {showLogin && <Login show={showLogin} onClose={closeLogin} onSignUpClick={toggleSignUp}
+          onForgotPasswordClick={toggleForgot} />}
+
+
+
+        {showForgotPassword && <ForgotPassword show={showForgotPassword} onClose={closeForgotPassword} onLoginClick={toggleLogin} onForgotPasswordClick={toggleForgot} />}
+
+
+        {/* {showSearch && <SearchBar show={showSearch} onClose={closeSearch} />} */}
+        <SearchBar show={showSearch} onClose={closeSearch} />
+
         {showBar && <BarOptions show={showBar} onClose={closeBar} />}
+
 
         {/* Scroll to Top Button */}
         <ScrollToTopButton />
@@ -87,4 +130,4 @@ function App() {
   );
 }
 
-export default App;
+export default App; 

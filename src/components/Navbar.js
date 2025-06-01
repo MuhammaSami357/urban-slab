@@ -1,41 +1,46 @@
-import React,{useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from '../components/firstlogo.png';
 import { useNavigate } from 'react-router-dom';
+import '../css files/Navbar.css';
 
 const Navbar = ({ onUserIconClick, onSearchIconClick, onBarIconClick }) => {
   const navigate = useNavigate();
 
-  const goToNewArrival = () => navigate('/newarrival');
   const goToLookBook = () => navigate('/lookbook');
-  const goToAbout = () => navigate('/about');
   const goToContact = () => navigate('/contact');
   const goToHome = () => navigate('/');
-// Dark mode implementation
-const [darkMode, setDarkMode] = useState(() => {
-  return localStorage.getItem('theme') === 'dark';
-});
+  // Dark mode implementation
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem('theme') === 'dark';
+  });
 
-useEffect(() => {
-  if (darkMode) {
-    document.body.classList.add('dark-mode');
-    localStorage.setItem('theme', 'dark');
-  } else {
-    document.body.classList.remove('dark-mode');
-    localStorage.setItem('theme', 'light');
-  }
-}, [darkMode]);
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add('dark-mode');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.body.classList.remove('dark-mode');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [darkMode]);
 
-const toggleDarkMode = () => setDarkMode(!darkMode);
+  const toggleDarkMode = () => setDarkMode(!darkMode);
   return (
     <>
       {/* Desktop Navbar */}
       <div className='container-one'>
+<div className="links-navbar">
+
+</div>
+
+
+
         <header>
           <div className="mini-nav">
             <div className="mini-navlinks">
-              <i id='fb'  className="fa-brands fa-facebook"></i>
+              <i id='fb' className="fa-brands fa-facebook"></i>
               <i id='tiktok' className="fa-brands fa-tiktok"></i>
-              <i  id='insta' className="fa-brands fa-instagram"></i>
+              <i id='insta' className="fa-brands fa-instagram"></i>
             </div>
             <div className="main-con">
               <div className="mini-line">
@@ -45,40 +50,43 @@ const toggleDarkMode = () => setDarkMode(!darkMode);
           </div>
         </header>
 
-        <nav className="navbar">
-          <div className="logo">
-            <img src={logo} alt="CozyWear Logo" className="logo-img" />
-            <span className="logo-text">CozyWear</span>
-          </div>
 
-          <div className="search-bar">
-            <input type="text" placeholder="Search for products..." />
-          </div>
+<nav className="navbar">
+  <div className="navbar-left">
+    <div className="logo">
+      <img src={logo} alt="CozyWear Logo" className="logo-img" />
+      <span className="logo-text">CozyWear</span>
+    </div>
+  </div>
 
-          <div className="icons">
-            <i className="fas fa-user icon" onClick={onUserIconClick}></i>
-            <i className="fas fa-shopping-cart icon"></i>
-            <i className="fas fa-heart icon"></i>
-          </div>
-        </nav>
+  <div className="navbar-center">
+    <ul className="nav-links">
+      <li onClick={goToHome}>Explore</li>
+      <li onClick={goToLookBook}>Summer Collection</li>
+      <li onClick={goToContact}>Contact Us</li>
+    </ul>
+  </div>
 
-        <div className="third-nav">
-          <div className="nav-options">
-            <li onClick={goToHome}>Explore</li>
-            <li onClick={goToNewArrival}>New Arrivals</li>
-            <li onClick={goToLookBook}>Summer Collection</li>
-            <li onClick={goToAbout}>Our Journey</li>
-            <li onClick={goToContact}>Contact Us</li>
-          </div>
-          <div className="mode-lang">
-          <i 
-             className={darkMode ? 'fas fa-sun  sun-icon' : 'fa fa-moon  moon-icon'} 
-             onClick={toggleDarkMode}
-              style={{ cursor: 'pointer', fontSize: '1.5rem' }}
-            ></i>
-            
-          </div>
-        </div>
+  <div className="navbar-right">
+    <div className="icon-group">
+       <div className="icon-divider"></div>
+      <i className="fa fa-search icon"    onClick={onSearchIconClick}></i>
+      <div className="icon-divider"></div>
+      <i className="fa fa-user icon" onClick={onUserIconClick}></i>
+      <div className="icon-divider"></div>
+      <i className="fa fa-shopping-cart icon"></i>
+      <div className="icon-divider"></div>
+      
+      <i
+        className={darkMode ? 'fas fa-sun icon' : 'fa fa-moon icon'}
+        onClick={toggleDarkMode}
+      ></i>
+    </div>
+  </div>
+</nav>
+
+
+         
       </div>
 
       {/* Mobile Navbar */}

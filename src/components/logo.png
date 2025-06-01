@@ -1,0 +1,6 @@
+<svg width="5rem" height="4rem" viewBox="0 0 250 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="250" height="200" rx="25" fill="white"></rect>
+  <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', sans-serif" font-size="120" font-weight="600" letter-spacing="-10">
+    <tspan fill="red">C</tspan><tspan fill="black">W</tspan>
+  </text>
+</svg>

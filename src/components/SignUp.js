@@ -1,6 +1,3 @@
-
-
-
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -24,13 +21,15 @@ const SignUp = ({ show, onClose, onLoginClick }) => {
           validationSchema={validationSchema}
           onSubmit={async (values, { resetForm }) => {
             try {
-              const response = await axios.post("http://localhost:5000/api/signup", values);
+              const response = await axios.post("http://localhost:5000/api/auth/signup", values);
               console.log("Success:", response.data.msg);
               alert(response.data.msg);
             } catch (error) {
-              console.error("Signup Error:", error.response?.data?.msg || "Something went wrong");
-              alert(error.response?.data?.msg || "Error during signup");
+              const errorMsg = error?.response?.data?.msg || "Signup failed. Please try again later.";
+              console.error("Signup Error:", errorMsg);
+              alert(errorMsg);
             }
+            
             
           }}
         >
@@ -70,6 +69,5 @@ const SignUp = ({ show, onClose, onLoginClick }) => {
 };
 
 export default SignUp;
-
 
 

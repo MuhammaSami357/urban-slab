@@ -7,10 +7,10 @@ const SearchBar = ({ show, onClose }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
-    <div className={`search-container ${show ? "show" : "hide"}`}>
+  <div className={`search-container ${show ? 'search-slide-in' : 'search-slide-out'}`}>
+
       {/* Header Section */}
       <div className="btn-heading">
-        <h1>Search Our Site</h1>
         <button className="mob-closebtn" onClick={onClose}>
           ×
         </button>
